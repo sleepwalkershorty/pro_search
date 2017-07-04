@@ -5,7 +5,17 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class ActivityMain extends AppCompatActivity {
 
@@ -22,6 +32,45 @@ public class ActivityMain extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+            }
+        });
+
+        Button bData = (Button) findViewById(R.id.button2);
+        bData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new GraphRequest(
+                        AccessToken.getCurrentAccessToken(),
+                        "/v2.5/me",
+                        null,
+                        HttpMethod.GET,
+                        new GraphRequest.Callback() {
+                            public void onCompleted(GraphResponse response) {
+                            /* handle the result */
+                                try {
+
+                                    JSONObject object = response.getJSONObject();
+                                    if (object != null)
+                                    {
+                                        Log.d("Test",object.toString());
+                                        JSONArray array = object.getJSONArray("data");
+
+                                        if (array != null)
+                                        {
+                                            for (int i=0;i<array.length();i++) {
+                                                Log.d("Test", array.get(i).toString());
+//                                                Log.d("Test", array.getJSONObject(i).getString("name"));
+                                            }
+                                        }
+                                    }
+                                    else
+                                        Log.d("Test",response.toString());
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                ).executeAsync();
             }
         });
     }
