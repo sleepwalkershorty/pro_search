@@ -7,6 +7,8 @@
     android:fitsSystemWindows="true"
     tools:context="pro_search.nrgappdesign.de.prosearch.ActivityMain">
 
+
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
@@ -28,6 +30,16 @@
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/login_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                tools:layout_editor_absoluteY="188dp"
+                tools:layout_editor_absoluteX="103dp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"/>
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>

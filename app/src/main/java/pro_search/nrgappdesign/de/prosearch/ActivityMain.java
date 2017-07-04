@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
@@ -16,6 +17,8 @@ import com.facebook.HttpMethod;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import static android.R.attr.type;
 
 public class ActivityMain extends AppCompatActivity {
 
@@ -41,7 +44,9 @@ public class ActivityMain extends AppCompatActivity {
             public void onClick(View v) {
                 new GraphRequest(
                         AccessToken.getCurrentAccessToken(),
-                        "/v2.5/me",
+                        //"/v2.5/me",
+                        //"/search?q=Andreas+Jungmann&type=user",
+                        "/search?q=Single women who live in dessau&type=user",
                         null,
                         HttpMethod.GET,
                         new GraphRequest.Callback() {
@@ -52,6 +57,8 @@ public class ActivityMain extends AppCompatActivity {
                                     JSONObject object = response.getJSONObject();
                                     if (object != null)
                                     {
+                                        //String name = object.getString("name");
+                                        //Toast.makeText(ActivityMain.this,"Hallo "+name+"! Wie geht's dir?",Toast.LENGTH_LONG).show();
                                         Log.d("Test",object.toString());
                                         JSONArray array = object.getJSONArray("data");
 
