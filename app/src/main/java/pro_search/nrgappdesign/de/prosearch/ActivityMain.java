@@ -46,7 +46,7 @@ public class ActivityMain extends AppCompatActivity {
                         AccessToken.getCurrentAccessToken(),
                         //"/v2.5/me",
                         //"/search?q=Andreas+Jungmann&type=user",
-                        "/search?q=Single women who live in dessau&type=user",
+                        "/search?q=Stephan+greupner&type=user",
                         null,
                         HttpMethod.GET,
                         new GraphRequest.Callback() {
